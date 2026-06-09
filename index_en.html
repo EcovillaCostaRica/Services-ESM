@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ecovilla San Mateo · Service Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Spline+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#0e3b1c;
+    --forest-deep:#0a2a14;
+    --forest-mid:#15512a;
+    --sage:#7fa183;
+    --sage-soft:#b9cdb8;
+    --cream:#f4f1e8;
+    --cream-deep:#e9e4d4;
+    --gold:#c9a24b;
+    --ink:#1a2419;
+    --paper:#fbfaf5;
+    --line:rgba(14,59,28,.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Spline Sans',sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--forest);color:var(--cream)}
+
+  h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:400;line-height:1.08;letter-spacing:-.01em}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+
+  /* ---------- decorative grain ---------- */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;min-height:100vh;background:var(--forest);color:var(--cream);
+    display:flex;flex-direction:column;justify-content:space-between;
+    overflow:hidden;padding:80px 0 42px;
+  }
+  .hero-main{flex-grow:1;display:flex;align-items:center}
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 75% 30%,rgba(127,161,131,.18),transparent 55%),
+               radial-gradient(circle at 15% 85%,rgba(201,162,75,.10),transparent 50%);
+    pointer-events:none;
+  }
+  .leaf{
+    position:absolute;font-size:clamp(280px,40vw,560px);font-family:'Fraunces',serif;
+    color:rgba(255,255,255,.025);right:-4%;top:50%;transform:translateY(-50%);
+    pointer-events:none;line-height:1;user-select:none;
+  }
+  .hero .wrap{position:relative;z-index:2}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:12px;
+    font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--sage-soft);font-weight:500;margin-bottom:34px;
+  }
+  .eyebrow::before{content:"";width:46px;height:1px;background:var(--gold)}
+  .hero h1{
+    font-size:clamp(3rem,8.5vw,7rem);color:var(--cream);max-width:14ch;
+    margin-bottom:30px;font-weight:300;
+  }
+  .hero h1 em{font-style:italic;color:var(--sage-soft)}
+  .hero p.lead{
+    font-size:clamp(1.05rem,1.7vw,1.3rem);max-width:52ch;color:rgba(244,241,232,.78);
+    font-weight:300;margin-bottom:48px;
+  }
+  .hero-tags{display:flex;flex-wrap:wrap;gap:14px}
+  .tag{
+    border:1px solid rgba(185,205,184,.3);padding:11px 22px;border-radius:100px;
+    font-size:.85rem;letter-spacing:.04em;color:var(--cream);
+    transition:.4s;backdrop-filter:blur(4px);
+    text-decoration:none;cursor:pointer;display:inline-block;
+  }
+  .tag:hover{background:var(--cream);color:var(--forest);border-color:var(--cream)}
+  .hero-meta{
+    position:relative;z-index:2;margin-top:80px;
+  }
+  .hero-meta .wrap{display:flex;justify-content:space-between;align-items:flex-end;
+    border-top:1px solid rgba(185,205,184,.2);padding-top:24px;flex-wrap:wrap;gap:16px}
+  .hero-meta span{font-size:.82rem;letter-spacing:.05em;color:var(--sage-soft)}
+
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+  /* ---------- INTRO ---------- */
+  .intro{padding:120px 0 40px;position:relative}
+  .intro-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:80px;align-items:start}
+  .section-label{
+    font-size:.78rem;letter-spacing:.26em;text-transform:uppercase;color:var(--forest-mid);
+    font-weight:600;margin-bottom:18px;display:flex;align-items:center;gap:10px;
+  }
+  .section-label::before{content:"";width:8px;height:8px;background:var(--gold);border-radius:50%}
+  .intro h2{font-size:clamp(2rem,4vw,3.2rem);color:var(--forest);font-weight:300}
+  .intro h2 em{font-style:italic}
+  .intro p{font-size:1.08rem;color:#3c4a3a;margin-bottom:20px}
+  .intro p:first-of-type{font-size:1.2rem;color:var(--ink)}
+
+  /* ---------- SERVICES OVERVIEW ---------- */
+  .services{padding:30px 0 110px;background:var(--paper)}
+  .svc-head{text-align:center;max-width:640px;margin:0 auto 70px}
+  .svc-head h2{font-size:clamp(2.2rem,4.5vw,3.4rem);color:var(--forest);font-weight:300;margin-top:14px}
+  .svc-head p{color:#4a5848;margin-top:16px}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .card{
+    background:var(--paper);border:1px solid var(--line);border-radius:6px;
+    padding:42px 36px;position:relative;overflow:hidden;transition:.5s cubic-bezier(.2,.7,.2,1);
+    display:flex;flex-direction:column;
+  }
+  .card::before{
+    content:"";position:absolute;top:0;left:0;width:100%;height:3px;
+    background:var(--forest);transform:scaleX(0);transform-origin:left;transition:.5s;
+  }
+  .card:hover{transform:translateY(-8px);box-shadow:0 30px 60px -30px rgba(14,59,28,.32);border-color:transparent}
+  .card:hover::before{transform:scaleX(1)}
+  .card-num{font-family:'Fraunces',serif;font-size:1rem;color:var(--gold);letter-spacing:.1em;margin-bottom:26px}
+  .card-icon{width:54px;height:54px;margin-bottom:24px;color:var(--forest)}
+  .card h3{font-size:1.55rem;color:var(--forest);margin-bottom:16px;font-weight:500}
+  .card p{font-size:.97rem;color:#4a5848;flex-grow:1}
+  .card .fee{margin-top:28px;padding-top:20px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:baseline}
+  .card .fee small{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sage)}
+  .card .fee strong{font-family:'Fraunces',serif;font-size:1.5rem;color:var(--forest);font-weight:500}
+
+  /* ---------- DETAIL SECTIONS ---------- */
+  .detail{padding:110px 0;border-top:1px solid var(--line);scroll-margin-top:20px}
+  .detail:nth-of-type(even){background:var(--cream)}
+  .detail-head{display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;margin-bottom:64px}
+  .big-num{
+    font-family:'Fraunces',serif;font-size:clamp(4rem,9vw,7.5rem);color:var(--forest);
+    line-height:.8;font-weight:300;opacity:.16;
+  }
+  .detail-head h2{font-size:clamp(2rem,4vw,3rem);color:var(--forest);font-weight:400}
+  .detail-head .obj{color:#4a5848;margin-top:14px;max-width:62ch;font-size:1.05rem}
+
+  .detail-body{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:start}
+  .phases h4,.aside h4{
+    font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--forest-mid);
+    font-weight:600;margin-bottom:24px;
+  }
+  .phase{margin-bottom:30px;padding-left:28px;position:relative}
+  .phase::before{content:"";position:absolute;left:0;top:9px;width:11px;height:11px;
+    border:2px solid var(--gold);border-radius:50%}
+  .phase::after{content:"";position:absolute;left:5px;top:24px;bottom:-24px;width:1px;background:var(--line)}
+  .phase:last-child::after{display:none}
+  .phase h5{font-family:'Fraunces',serif;font-size:1.2rem;color:var(--forest);font-weight:500;margin-bottom:8px}
+  .phase ul{list-style:none}
+  .phase li{font-size:.95rem;color:#4a5848;padding:3px 0 3px 18px;position:relative}
+  .phase li::before{content:"›";position:absolute;left:0;color:var(--sage);font-weight:600}
+
+  .aside{background:var(--forest);color:var(--cream);border-radius:6px;padding:38px 34px;position:sticky;top:30px}
+  .detail:nth-of-type(even) .aside{background:var(--forest)}
+  .aside h4{color:var(--sage-soft)}
+  .pay-row{display:flex;justify-content:space-between;align-items:center;
+    padding:15px 0;border-bottom:1px solid rgba(185,205,184,.18)}
+  .pay-row:last-of-type{border-bottom:none}
+  .pay-row .when{font-size:.9rem;color:rgba(244,241,232,.82);max-width:64%}
+  .pay-row .pct{font-family:'Fraunces',serif;font-size:1.4rem;color:var(--gold);font-weight:500}
+  .aside .meta-block{margin-top:28px;padding-top:24px;border-top:1px solid rgba(185,205,184,.2)}
+  .aside .meta-block:first-of-type{margin-top:0;padding-top:0;border-top:none}
+  .meta-block .k{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sage-soft);margin-bottom:6px}
+  .meta-block .v{font-size:1rem;color:var(--cream)}
+  .meta-block .note{font-size:.82rem;color:var(--sage-soft);margin-top:8px;line-height:1.5;font-style:italic}
+  .excl{margin-top:34px}
+  .excl li{font-size:.88rem;color:#5a6857;padding:5px 0 5px 18px;position:relative}
+  .excl li::before{content:"–";position:absolute;left:0;color:var(--sage)}
+  .blist{list-style:none;margin:14px 0 4px;padding:0}
+  .blist li{font-size:1rem;color:#3c4a3a;padding:6px 0 6px 22px;position:relative}
+  .blist li::before{content:"";position:absolute;left:0;top:13px;width:7px;height:7px;background:var(--gold);border-radius:50%}
+
+  /* ---------- COMPARISON ---------- */
+  .compare{padding:110px 0;background:var(--forest);color:var(--cream);position:relative;overflow:hidden}
+  .compare::after{content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 80% 20%,rgba(201,162,75,.08),transparent 50%);pointer-events:none}
+  .compare .wrap{position:relative;z-index:2}
+  .compare h2{font-size:clamp(2.2rem,4.5vw,3.4rem);color:var(--cream);font-weight:300;text-align:center;margin-bottom:12px}
+  .compare .sub{text-align:center;color:var(--sage-soft);margin-bottom:64px}
+  .ctable{width:100%;border-collapse:collapse}
+  .ctable th,.ctable td{padding:22px 20px;text-align:left;border-bottom:1px solid rgba(185,205,184,.16);font-size:.98rem}
+  .ctable thead th{font-family:'Fraunces',serif;font-size:1.25rem;color:var(--cream);font-weight:500;vertical-align:bottom}
+  .ctable thead th:first-child{color:var(--sage-soft);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;font-family:'Spline Sans',sans-serif}
+  .ctable tbody th{font-weight:500;color:var(--sage-soft);font-size:.82rem;letter-spacing:.1em;text-transform:uppercase}
+  .ctable td{color:rgba(244,241,232,.85)}
+  .ctable tbody tr{transition:.3s}
+  .ctable tbody tr:hover{background:rgba(255,255,255,.03)}
+  .yes{color:var(--gold);font-weight:600}
+  .no{color:#5f7560}
+
+  /* ---------- TERMS ---------- */
+  .terms{padding:110px 0}
+  .terms-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--line);
+    border:1px solid var(--line);border-radius:6px;overflow:hidden}
+  .term{background:var(--paper);padding:38px 36px}
+  .term h4{font-family:'Fraunces',serif;font-size:1.2rem;color:var(--forest);font-weight:500;margin-bottom:12px;
+    display:flex;align-items:center;gap:12px}
+  .term h4 .dot{width:7px;height:7px;background:var(--gold);border-radius:50%;flex-shrink:0}
+  .term p{font-size:.94rem;color:#4a5848}
+
+  /* ---------- CTA ---------- */
+  .cta{padding:120px 0;text-align:center;background:var(--cream);border-top:1px solid var(--line)}
+  .cta h2{font-size:clamp(2.4rem,5vw,4rem);color:var(--forest);font-weight:300;max-width:18ch;margin:0 auto 24px}
+  .cta h2 em{font-style:italic;color:var(--forest-mid)}
+  .cta p{color:#4a5848;max-width:46ch;margin:0 auto 40px;font-size:1.1rem}
+  .btn{display:inline-flex;align-items:center;gap:12px;background:var(--forest);color:var(--cream);
+    padding:18px 40px;border-radius:100px;text-decoration:none;font-size:1rem;letter-spacing:.02em;
+    transition:.4s;border:1px solid var(--forest)}
+  .btn:hover{background:transparent;color:var(--forest);transform:translateY(-3px)}
+  .btn svg{transition:.4s}.btn:hover svg{transform:translateX(4px)}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--forest-deep);color:var(--sage-soft);padding:54px 0}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+  .flogo{font-family:'Fraunces',serif;font-size:1.6rem;color:var(--cream);font-weight:400}
+  .flogo span{color:var(--gold)}
+  footer .fmeta{font-size:.82rem;text-align:right;line-height:1.8}
+  .confidential{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:#4a5d49;margin-top:8px}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:900px){
+    .intro-grid,.detail-body{grid-template-columns:1fr;gap:42px}
+    .svc-grid{grid-template-columns:1fr}
+    .terms-grid{grid-template-columns:1fr}
+    .aside{position:static}
+    .detail-head{grid-template-columns:1fr;gap:12px}
+    .big-num{font-size:4.5rem}
+    .ctable{font-size:.84rem}
+    .ctable th,.ctable td{padding:14px 10px}
+    .ctable thead th{font-size:1rem}
+  }
+  @media(max-width:560px){
+    .wrap{padding:0 22px}
+    .hero{min-height:auto;padding:120px 0 100px}
+    .ctable thead{display:none}
+    .ctable,.ctable tbody,.ctable tr,.ctable td{display:block;width:100%}
+    .ctable tbody th{display:block;background:var(--forest-mid);margin-top:18px;padding:12px 16px}
+    .ctable td{border:none;padding:8px 16px;display:flex;justify-content:space-between}
+    .ctable td::before{content:attr(data-label);color:var(--sage-soft);font-size:.78rem;letter-spacing:.08em}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="leaf">❧</div>
+  <div class="hero-main">
+    <div class="wrap">
+      <div class="eyebrow reveal in">Ecovilla San Mateo · Costa Rica</div>
+      <h1 class="reveal in d1">A <em>guided</em> building experience.</h1>
+      <p class="lead reveal in d2">Design, project management and construction, coordinated within a single ecosystem to take your home from concept to handover within Ecovilla San Mateo.</p>
+      <div class="hero-tags reveal in d3">
+        <a class="tag" href="#diseno">Architectural Design</a>
+        <a class="tag" href="#proyectos">Project management</a>
+        <a class="tag" href="#construccion">Construction management</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-meta reveal in d4">
+    <div class="wrap">
+      <span>San Mateo, Alajuela · Costa Rica</span>
+      <span>Service portfolio — Commercial summary</span>
+    </div>
+  </div>
+</header>
+
+<!-- INTRO 1 — INSPIRADOR, NO ABRUMADOR -->
+<section class="intro">
+  <div class="wrap intro-grid">
+    <div class="reveal">
+      <div class="section-label">The starting point</div>
+      <h2>Building should feel inspiring, not <em>overwhelming</em>.</h2>
+    </div>
+    <div class="reveal d1">
+      <p>Designing and building a home in Costa Rica can be one of the most meaningful projects of a lifetime. It can also become one of the most stressful.</p>
+      <p>Coordinating permits, contractors, logistics, budgets, suppliers, engineering, communication and on-site supervision —especially from another country— often creates unnecessary complexity, delays and frustration.</p>
+      <p>At Ecovilla San Mateo we created an integral ecosystem of services to help simplify that process. Our role is to support owners through every stage of the journey, with local coordination, trusted teams and a deep understanding of the community’s vision.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO 2 — MUCHO MÁS QUE CONSTRUCCIÓN -->
+<section class="intro" style="padding-top:40px;border-top:1px solid var(--line)">
+  <div class="wrap intro-grid">
+    <div class="reveal">
+      <div class="section-label">Who we are</div>
+      <h2>Much more than <em>construction</em>.</h2>
+    </div>
+    <div class="reveal d1">
+      <p>This is not simply a construction service. It is a support system designed to help owners turn a vision into reality with greater clarity, efficiency and peace of mind.</p>
+      <p>We act as local allies and representatives throughout the entire process, coordinating architects, engineers, contractors, suppliers, permits and construction, while safeguarding the owner’s interests at every stage.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO 3 — POR QUÉ CREAMOS ESTOS SERVICIOS -->
+<section class="intro" style="padding-top:40px;border-top:1px solid var(--line)">
+  <div class="wrap intro-grid">
+    <div class="reveal">
+      <div class="section-label">Why we exist</div>
+      <h2>Why These Services <em>Exist</em>.</h2>
+    </div>
+    <div class="reveal d1">
+      <p>Over the years we saw that many owners faced similar challenges when building independently in Costa Rica:</p>
+      <ul class="blist">
+        <li>Fragmented communication between suppliers</li>
+        <li>Unclear budgets</li>
+        <li>Delays and rework</li>
+        <li>Lack of supervision</li>
+        <li>Inconsistent quality</li>
+        <li>Logistical difficulties</li>
+        <li>Unnecessary stress</li>
+      </ul>
+      <p>These services were created to reduce those points of friction and offer a more organized, transparent and supported experience. In many cases, coordinated planning and economies of scale within the community also generate significant efficiencies, both in cost and execution.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES OVERVIEW -->
+<section class="services">
+  <div class="wrap">
+    <div class="svc-head reveal">
+      <div class="section-label" style="justify-content:center">Our services</div>
+      <h2>A Flexible Building Ecosystem</h2>
+      <p>Each service can be contracted independently or integrated into a fully coordinated process. Complete flexibility according to each owner’s needs.</p>
+    </div>
+    <div class="svc-grid">
+
+      <article class="card reveal d1">
+        <div class="card-num">01 / Design</div>
+        <svg class="card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 40V14L24 6l16 8v26"/><path d="M8 40h32M18 40V26h12v14"/><path d="M24 6v8"/></svg>
+        <h3>Architectural Design</h3>
+        <p>We transform ideas into aligned, functional and living spaces, integrated with the natural surroundings and the vision of Ecovilla San Mateo.</p>
+        <div class="fee"><small>Fee</small><strong>Fixed fee</strong></div>
+      </article>
+
+      <article class="card reveal d2">
+        <div class="card-num">02 / Management</div>
+        <svg class="card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M10 38V10M10 38h28"/><path d="M16 30l6-8 6 5 8-12"/><circle cx="16" cy="30" r="1.6" fill="currentColor"/><circle cx="22" cy="22" r="1.6" fill="currentColor"/><circle cx="28" cy="27" r="1.6" fill="currentColor"/><circle cx="36" cy="15" r="1.6" fill="currentColor"/></svg>
+        <h3>Project management</h3>
+        <p>Professional coordination from start to finish: we organize, coordinate and supervise the entire process on behalf of the owner.</p>
+        <div class="fee"><small>Fee</small><strong>6%</strong></div>
+      </article>
+
+      <article class="card reveal d3">
+        <div class="card-num">03 / Finance</div>
+        <svg class="card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="24" cy="24" r="16"/><path d="M24 14v20M28.5 18.5c-1-1.4-2.7-2-4.5-2-2.8 0-5 1.6-5 4s2.2 3.2 5 3.7 5 1.3 5 3.7-2.2 4-5 4c-1.8 0-3.5-.6-4.5-2"/></svg>
+        <h3>Construction management</h3>
+        <p>We bring the project to life with trusted teams and coordinated execution, maintaining high standards of communication, organization and quality.</p>
+        <div class="fee"><small>Fee</small><strong>8%</strong></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- DETAIL 1 — DISEÑO -->
+<section class="detail" id="diseno">
+  <div class="wrap">
+    <div class="detail-head reveal">
+      <div class="big-num">01</div>
+      <div>
+        <div class="section-label">Service 01</div>
+        <h2>Architectural Design</h2>
+        <p class="obj">Our architecture team works closely with each owner to design homes integrated with the natural surroundings and with the overall vision of Ecovilla San Mateo.</p>
+      </div>
+    </div>
+    <div class="detail-body">
+      <div class="phases reveal d1">
+        <h4>The service may include</h4>
+        <div class="phase">
+          <ul>
+            <li>Concept development</li>
+            <li>Architectural design</li>
+            <li>Integration with the master plan</li>
+            <li>3D visualizations and renders</li>
+            <li>Technical drawings</li>
+            <li>Engineering coordination</li>
+            <li>Document management for permits</li>
+            <li>Design optimization for construction efficiency</li>
+          </ul>
+        </div>
+      </div>
+      <aside class="aside reveal d2">
+        <h4>Payment terms</h4>
+        <div class="pay-row"><span class="when">On signing the contract</span><span class="pct">30%</span></div>
+        <div class="pay-row"><span class="when">Written approval of the preliminary design</span><span class="pct">35%</span></div>
+        <div class="pay-row"><span class="when">Delivery of the drawing package to the CFIA</span><span class="pct">35%</span></div>
+        <div class="meta-block">
+          <div class="k">Included</div>
+          <div class="v">3 design iterations · Deliverables in digital PDF</div>
+        </div>
+        <div class="excl">
+          <div class="k" style="font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sage-soft);margin-bottom:8px">Not included</div>
+          <ul style="list-style:none">
+            <li>Official permit and approval fees</li>
+            <li>Specialized studies (topography, soils)</li>
+            <li>Additional renders or physical models</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- DETAIL 2 — GESTIÓN DE PROYECTOS -->
+<section class="detail" id="proyectos">
+  <div class="wrap">
+    <div class="detail-head reveal">
+      <div class="big-num">02</div>
+      <div>
+        <div class="section-label">Service 02</div>
+        <h2>Project management</h2>
+        <p class="obj">Building a home involves dozens of moving parts at the same time. We organize, coordinate and supervise the entire process on behalf of the owner —one of the most valuable services for those building from abroad.</p>
+      </div>
+    </div>
+    <div class="detail-body">
+      <div class="phases reveal d1">
+        <h4>The service may include</h4>
+        <div class="phase">
+          <ul>
+            <li>Budget development and control</li>
+            <li>Contractor coordination</li>
+            <li>Support with purchasing and procurement</li>
+            <li>Schedule management</li>
+            <li>On-site supervision</li>
+            <li>Quality monitoring</li>
+            <li>Permit coordination</li>
+            <li>Communication between all parties involved</li>
+          </ul>
+        </div>
+      </div>
+      <aside class="aside reveal d2">
+        <h4>Payment terms</h4>
+        <div class="pay-row"><span class="when">Contract signing</span><span class="pct">30%</span></div>
+        <div class="pay-row"><span class="when">Start of construction</span><span class="pct">20%</span></div>
+        <div class="pay-row"><span class="when">Construction progress at 50%</span><span class="pct">20%</span></div>
+        <div class="pay-row"><span class="when">Construction progress at 80%</span><span class="pct">20%</span></div>
+        <div class="pay-row"><span class="when">Closing and delivery of the final report</span><span class="pct">10%</span></div>
+        <div class="meta-block">
+          <div class="k">Fee</div>
+          <div class="v">6% of the total estimated construction cost</div>
+          <div class="note">May be subject to revision if the construction budget increases, by prior agreement between both parties.</div>
+        </div>
+        <div class="meta-block">
+          <div class="k">Reports</div>
+          <div class="v">Biweekly · in digital PDF</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- DETAIL 3 — GESTIÓN DE LA CONSTRUCCIÓN -->
+<section class="detail" id="construccion">
+  <div class="wrap">
+    <div class="detail-head reveal">
+      <div class="big-num">03</div>
+      <div>
+        <div class="section-label">Service 03</div>
+        <h2>Construction management</h2>
+        <p class="obj">We bring the project to life with trusted teams and coordinated execution, maintaining high standards of communication, organization and quality throughout the build.</p>
+      </div>
+    </div>
+    <div class="detail-body">
+      <div class="phases reveal d1">
+        <h4>The service may include</h4>
+        <div class="phase">
+          <ul>
+            <li>Construction execution</li>
+            <li>Labor coordination</li>
+            <li>Materials and logistics management</li>
+            <li>Site administration</li>
+            <li>Site supervision</li>
+            <li>Finishes and final handover coordination</li>
+          </ul>
+        </div>
+      </div>
+      <aside class="aside reveal d2">
+        <h4>Payment terms</h4>
+        <div class="pay-row"><span class="when">Contract signing</span><span class="pct">20%</span></div>
+        <div class="pay-row"><span class="when">Start of construction (after tender)</span><span class="pct">60%</span></div>
+        <div class="pay-row"><span class="when">Closing and delivery of the final report</span><span class="pct">20%</span></div>
+        <div class="meta-block">
+          <div class="k">Fee</div>
+          <div class="v">8% of the total construction cost</div>
+          <div class="note">May be subject to revision if the construction budget increases, by prior agreement between both parties.</div>
+        </div>
+        <div class="meta-block">
+          <div class="k">Funds management</div>
+          <div class="v">We manage disbursements from a designated account</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY ADVANTAGE -->
+<section class="intro" style="border-top:1px solid var(--line);background:var(--cream)">
+  <div class="wrap intro-grid">
+    <div class="reveal">
+      <div class="section-label">The community advantage</div>
+      <h2>Building within a <em>coordinated ecosystem</em>.</h2>
+    </div>
+    <div class="reveal d1">
+      <p>One of the great benefits of building within Ecovilla San Mateo is access to a coordinated ecosystem, where infrastructure, architecture, engineering and project management can work far more efficiently.</p>
+      <p>This typically allows for:</p>
+      <ul class="blist">
+        <li>Smoother execution</li>
+        <li>Better communication</li>
+        <li>Faster problem-solving</li>
+        <li>Fewer inefficiencies</li>
+        <li>A far more organized overall experience</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="compare">
+  <div class="wrap">
+    <h2 class="reveal">Service comparison</h2>
+    <p class="sub reveal d1">A quick look at how they differ and complement each other.</p>
+    <table class="ctable reveal d2">
+      <thead>
+        <tr>
+          <th>Aspect</th>
+          <th>Design</th>
+          <th>Project management</th>
+          <th>Construction management</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Fee</th>
+          <td data-label="Design">Fixed fee</td>
+          <td data-label="Project management">6% of construction cost</td>
+          <td data-label="Construction management">8% of construction cost</td>
+        </tr>
+        <tr>
+          <th>Staged payments</th>
+          <td data-label="Design">30 · 35 · 35</td>
+          <td data-label="Project management">30 · 20 · 20 · 20 · 10</td>
+          <td data-label="Construction management">20 · 60 · 20</td>
+        </tr>
+        <tr>
+          <th>Main function</th>
+          <td data-label="Design">Design</td>
+          <td data-label="Project management">Control and supervision</td>
+          <td data-label="Construction management">Finance and purchasing</td>
+        </tr>
+        <tr>
+          <th>Funds management</th>
+          <td data-label="Design"><span class="no">No</span></td>
+          <td data-label="Project management"><span class="no">No</span></td>
+          <td data-label="Construction management"><span class="yes">Yes</span></td>
+        </tr>
+        <tr>
+          <th>Reports</th>
+          <td data-label="Design">Per phase</td>
+          <td data-label="Project management">Biweekly</td>
+          <td data-label="Construction management">Weekly</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- TERMS -->
+<section class="terms">
+  <div class="wrap">
+    <div class="svc-head reveal" style="text-align:left;margin-bottom:50px">
+      <div class="section-label">Transparency and structure</div>
+      <h2 style="font-size:clamp(1.9rem,3.6vw,2.8rem)">Clear rules from the start</h2>
+      <p style="color:#4a5848;margin-top:16px;max-width:70ch">Each service is formalized through independent contracts that clearly define scope, responsibilities, pricing structure, timelines and payment terms. Owners are completely free to contract one, two or all three services, according to their preferences and the level of support they want.</p>
+    </div>
+    <div class="terms-grid reveal d1">
+      <div class="term">
+        <h4><span class="dot"></span>Currency and payment method</h4>
+        <p>All fees are set and paid in US dollars (USD) by bank transfer, with no commissions or deductions. The fees stated constitute the final and total price of the service, with no additional charges. The client covers the transfer costs.</p>
+      </div>
+      <div class="term">
+        <h4><span class="dot"></span>Confidentiality</h4>
+        <p>All client information is kept strictly confidential throughout the contractual relationship.</p>
+      </div>
+      <div class="term">
+        <h4><span class="dot"></span>Contract termination</h4>
+        <p>By mutual agreement, for substantial breach not remedied within 15 days, or at the client’s discretion with 30 days’ notice, according to the terms of each service.</p>
+      </div>
+      <div class="term">
+        <h4><span class="dot"></span>Intellectual property</h4>
+        <p>The designs and drawings are the intellectual property of Ecovilla San Mateo. The client has the exclusive right to use them to build their residence, with no reproduction or reuse in other projects.</p>
+      </div>
+      <div class="term">
+        <h4><span class="dot"></span>Force majeure</h4>
+        <p>Neither party shall be liable for delays caused by force majeure. Timelines are automatically extended for as long as the cause persists.</p>
+      </div>
+      <div class="term">
+        <h4><span class="dot"></span>Governing law</h4>
+        <p>The contracts are governed by the laws of Costa Rica and subject to the competent courts of San José.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="wrap reveal">
+    <div class="section-label" style="justify-content:center;margin-bottom:18px">Our intention</div>
+    <h2>We don’t just build houses: we create <em>homes</em></h2>
+    <p>Our intention is to help create homes, relationships and a thriving community over the long term. Building in another country takes trust; our role is to make the experience feel more supported, organized and aligned from start to finish.</p>
+    <a class="btn" href="mailto:veronica@laecovilla.com?subject=Meeting%20request%20%E2%80%93%20Project%20at%20Ecovilla%20San%20Mateo&body=Hi%20Ver%C3%B3nica%2C%0D%0A%0D%0AI%27d%20like%20to%20schedule%20a%20meeting%20to%20discuss%20a%20possible%20project%20at%20Ecovilla%20San%20Mateo.%0D%0A%0D%0AServices%20of%20interest%3A%0D%0A-%20Architectural%20design%0D%0A-%20Project%20management%0D%0A-%20Construction%20management%0D%0A%0D%0AMy%20availability%20is%3A%20%0D%0A%0D%0AThank%20you%2C%0D%0A">
+      Request a meeting
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="flogo">Ecovilla<span>|</span></div>
+      <div class="confidential">Ecovilla San Mateo · Confidential document</div>
+    </div>
+    <div class="fmeta">
+      Ecovilla San Mateo · San Mateo, Costa Rica<br>
+      A regenerative community designed for connection, nature and a more conscious way of living
+    </div>
+  </div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+  },{threshold:.12,rootMargin:'0px 0px -60px 0px'});
+  document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
